@@ -37,7 +37,7 @@
 
 | Vulnerability | OWASP | Description |
 |---------------|-------|-------------|
-| 💬 XSS | A7 | User comments render unescaped HTML (`{{ c|safe }}`) |
+| 💬 XSS | A7 | User comments render unescaped HTML `c\|safe` |
 | 🛑 SQL Injection | A1 | Login bypass using classic `' OR '1'='1` |
 | 🔁 CSRF | A5 | Profile update without CSRF tokens |
 | 🧾 IDOR | A4 | Invoices accessible by changing `/invoice/<id>` |
