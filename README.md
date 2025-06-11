@@ -58,7 +58,7 @@
 ### ▶️ Run Locally
 
 ```bash
-[git clone https://github.com/yourusername/vulnvault.git](https://github.com/pleontis/VulnVault-A-Deliberately-Insecure-Web-App.git)
+git clone https://github.com/pleontis/VulnVault-A-Deliberately-Insecure-Web-App.git
 cd vulnvault
 pip install -r requirements.txt
 python run.py
