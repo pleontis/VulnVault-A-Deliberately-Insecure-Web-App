@@ -1,0 +1,2 @@
+# MISCONFIG Writeup
+

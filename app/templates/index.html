@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+    <title>VulnVault</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>XSS Demo</h1>
+    <form action="/comment" method="POST">
+        <textarea name="comment" placeholder="Leave a comment..."></textarea>
+        <button type="submit">Submit</button>
+    </form>
+    <h2>Comments:</h2>
+    <ul>
+        {% for c in comments %}
+        <li>{{ c|safe }}</li>
+        {% endfor %}
+    </ul>
+    <div style="text-align:center;">
+        <a href="/login">Login</a> | <a href="/profile">Profile</a> | <a href="/invoice/1">Invoice</a>
+    </div>
+</body>
+</html>
