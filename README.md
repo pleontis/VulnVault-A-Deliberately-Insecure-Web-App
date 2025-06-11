@@ -59,7 +59,7 @@
 
 ```bash
 git clone https://github.com/pleontis/VulnVault-A-Deliberately-Insecure-Web-App.git
-cd vulnvault
+cd VulnVault-A-Deliberately-Insecure-Web-App
 pip install -r requirements.txt
 python run.py
 ````
