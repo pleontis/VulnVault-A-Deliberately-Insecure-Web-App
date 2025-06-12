@@ -1,22 +1,10 @@
-from flask import render_template, request, redirect, session, make_response
+from flask import render_template, request, redirect, session
 from app import app
-import sqlite3
 import os
-
-app.config['UPLOAD_FOLDER'] = 'app/static/uploads'
-os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+import sqlite3
 
 comments = []
 db_path = 'vulnvault.db'
-
-def init_db():
-    with sqlite3.connect(db_path) as conn:
-        conn.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT, password TEXT);")
-        conn.execute("INSERT OR IGNORE INTO users (id, username, password) VALUES (1, 'admin', 'adminpass');")
-
-@app.before_first_request
-def setup():
-    init_db()
 
 @app.route('/')
 def index():
@@ -30,6 +18,7 @@ def comment():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error = None
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -39,7 +28,9 @@ def login():
             if result:
                 session['user'] = username
                 return redirect('/dashboard')
-    return render_template('login.html')
+            else:
+                error = "Invalid credentials"
+    return render_template('login.html', error=error)
 
 @app.route('/dashboard')
 def dashboard():
@@ -56,12 +47,31 @@ def profile():
 
 @app.route('/invoice/<int:invoice_id>')
 def invoice(invoice_id):
-    if invoice_id == 1:
-        return "Invoice #1 for Alice"
-    elif invoice_id == 2:
-        return "Invoice #2 for Bob"
+    fake_invoices = {
+        1: {"name": "Alice", "invoice_id": 1, "amount": "$150.00", "date": "2025-06-01", "items": [
+            {"item": "Web hosting", "price": "$50.00"},
+            {"item": "Domain name", "price": "$20.00"},
+            {"item": "SSL Certificate", "price": "$80.00"},
+        ]},
+        2: {"name": "Bob", "invoice_id": 2, "amount": "$99.00", "date": "2025-06-03", "items": [
+            {"item": "Email Services", "price": "$49.00"},
+            {"item": "Maintenance", "price": "$50.00"},
+        ]}
+    }
+
+    invoice = fake_invoices.get(invoice_id)
+    if invoice:
+        return render_template("invoice.html", invoice=invoice)
     else:
-        return "Access Denied"  # IDOR vulnerability (no auth check)
+        return "Access Denied"
+# @app.route('/invoice/<int:invoice_id>')
+# def invoice(invoice_id):
+#     if invoice_id == 1:
+#         return "Invoice #1 for Alice"
+#     elif invoice_id == 2:
+#         return "Invoice #2 for Bob"
+#     else:
+#         return "Access Denied"  # IDOR vulnerability
 
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -69,3 +79,8 @@ def upload():
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
     file.save(file_path)  # Insecure file upload
     return f"Uploaded {file.filename} to {file_path}"
+
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    return redirect('/login')

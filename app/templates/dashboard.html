@@ -1,2 +1,92 @@
-<h1>Welcome {{ user }}</h1>
-<p>This is your dashboard.</p>
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - VulnVault</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background-color: #f7f9fc;
+        }
+        h1 {
+            color: #333;
+        }
+        .info-box {
+            background-color: #e6f2ff;
+            border-left: 5px solid #3399ff;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f8ff;
+        }
+        .logout {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #fff;
+            background-color: #cc0000;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome, {{ user }} 👋</h1>
+
+    <div class="info-box">
+        <p>You have successfully logged in to <strong>VulnVault</strong>.</p>
+        <p>This simulated dashboard displays mock financial or account data. Practice identifying vulnerabilities here like IDOR, XSS, and CSRF.</p>
+    </div>
+
+    <h2>Your Recent Invoices</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Invoice ID</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>#1</td>
+                <td>2024-11-10</td>
+                <td>$120.00</td>
+                <td>Paid</td>
+            </tr>
+            <tr>
+                <td>#2</td>
+                <td>2024-12-02</td>
+                <td>$89.99</td>
+                <td>Unpaid</td>
+            </tr>
+            <tr>
+                <td>#3</td>
+                <td>2025-01-15</td>
+                <td>$55.49</td>
+                <td>Paid</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="logout" href="/logout">Logout</a>
+
+</body>
+</html>

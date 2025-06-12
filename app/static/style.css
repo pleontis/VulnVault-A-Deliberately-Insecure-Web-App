@@ -64,3 +64,9 @@ li::before {
     background: #00796b;
     border-radius: 50%;
 }
+p{
+    text-align: center;
+    color: #555;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}

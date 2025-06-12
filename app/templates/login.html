@@ -1,5 +1,26 @@
-<form action="/login" method="POST">
-    Username: <input name="username"><br>
-    Password: <input name="password" type="password"><br>
-    <button type="submit">Login</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - VulnVault</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <h1>Login</h1>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form action="/login" method="POST">
+        <label>Username:</label>
+        <input name="username"><br>
+        <label>Password:</label>
+        <input name="password" type="password"><br>
+        <button type="submit">Login</button>
+    </form>
+    <p style="text-align: center;"><a href="/" style="text-decoration:none;"><button type="button">Back</button></a></p>
+</body>
+</html>

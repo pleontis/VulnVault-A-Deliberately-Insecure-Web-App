@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice #{{ invoice.invoice_id }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+
+    <h1>Invoice #{{ invoice.invoice_id }}</h1>
+    <h2>Billed to: {{ invoice.name }}</h2>
+    <p><strong>Date:</strong> {{ invoice.date }}</p>
+
+    <ul>
+    {% for item in invoice['items'] %}
+        <li><strong>{{ item.item }}</strong> - {{ item.price }}</li>
+    {% endfor %}
+</ul>
+
+    <p><strong>Total:</strong> {{ invoice.amount }}</p>
+
+    <p>If you have any questions, contact <a href="mailto:support@example.com">support@example.com</a></p>
+
+    <button onclick="window.history.back()">Back</button>
+</body>
+</html>
