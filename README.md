@@ -11,13 +11,11 @@
 
 <table>
   <tr>
-    <td><img src="https://via.placeholder.com/300x200?text=Home+Page" alt="Home Page"></td>
-    <td><img src="https://via.placeholder.com/300x200?text=XSS+Demo" alt="XSS Example"></td>
-    <td><img src="https://via.placeholder.com/300x200?text=SQLi+Login" alt="SQL Injection"></td>
+    <td><img src="![image](https://github.com/user-attachments/assets/095f84d6-f3c4-4adb-b69c-661c1e2c9b97)" alt="Home Page"></td>
+    <td><img src="![image](https://github.com/user-attachments/assets/a1dc1921-e67e-413b-8308-26a9d8322432)" alt="SQL Injection"></td>
   </tr>
   <tr>
     <td align="center">Home Page</td>
-    <td align="center">Comment-based XSS</td>
     <td align="center">Login SQLi</td>
   </tr>
 </table>
