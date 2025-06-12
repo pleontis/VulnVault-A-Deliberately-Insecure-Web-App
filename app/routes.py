@@ -64,14 +64,6 @@ def invoice(invoice_id):
         return render_template("invoice.html", invoice=invoice)
     else:
         return "Access Denied"
-# @app.route('/invoice/<int:invoice_id>')
-# def invoice(invoice_id):
-#     if invoice_id == 1:
-#         return "Invoice #1 for Alice"
-#     elif invoice_id == 2:
-#         return "Invoice #2 for Bob"
-#     else:
-#         return "Access Denied"  # IDOR vulnerability
 
 @app.route('/upload', methods=['POST'])
 def upload():
